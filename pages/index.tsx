@@ -6,7 +6,7 @@ import {
 } from '@thirdweb-dev/react'
 import type { NextPage } from 'next'
 import styles from '../styles/Home.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const Home: NextPage = () => {
   const myAddress = useAddress()
@@ -20,6 +20,10 @@ const Home: NextPage = () => {
     const counter = await contract.call('getCounter')
     setCounter(counter.toString())
   }
+
+  useEffect(() => {
+    getCounter()
+  })
 
   return (
     <div className={styles.container}>
